@@ -3,11 +3,41 @@
 pipeline {
   agent any
 
+  environment {
+    AWS_ACCESS_KEY_ID     = credentials('AWS-access-key')
+    AWS_SECRET_ACCESS_KEY = credentials('AWS-secret-key')
+    AWS_DEFAULT_REGION    = 'ap-northeast-1'   // MUST match S3 bucket region
+  }
+
   stages {
-    stage('Init') { steps { terraformInit(path: 'src/terraform/wrapper') } }
-    stage('Validate') { steps { terraformValidate(path: 'src/terraform/wrapper') } }
-    stage('Plan') { steps { terraformPlan(path: 'src/terraform/wrapper', env: 'dev') } }
-    stage('Approval') { steps { input message: 'Approve Terraform Apply?' } }
-    stage('Apply') { steps { terraformApply(path: 'src/terraform/wrapper', env: 'dev') } }
+    stage('Init') {
+      steps {
+        terraformInit(path: 'src/terraform/wrapper')
+      }
+    }
+
+    stage('Validate') {
+      steps {
+        terraformValidate(path: 'src/terraform/wrapper')
+      }
+    }
+
+    stage('Plan') {
+      steps {
+        terraformPlan(path: 'src/terraform/wrapper', env: 'dev')
+      }
+    }
+
+    stage('Approval') {
+      steps {
+        input message: 'Approve Terraform Apply?'
+      }
+    }
+
+    stage('Apply') {
+      steps {
+        terraformApply(path: 'src/terraform/wrapper', env: 'dev')
+      }
+    }
   }
 }
