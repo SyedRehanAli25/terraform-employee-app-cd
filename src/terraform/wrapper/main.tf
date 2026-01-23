@@ -1,5 +1,5 @@
 module "employee_app" {
-  source         = "../../../modules/employee-app-ci"
+  source         = "../../../modules/employee-app-cd"
   
   ami_id         = var.ami_id
   instance_type  = var.instance_type
