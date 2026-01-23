@@ -4,8 +4,8 @@ pipeline {
   agent any
 
   environment {
-    AWS_ACCESS_KEY_ID     = credentials('AWS-access-key')
-    AWS_SECRET_ACCESS_KEY = credentials('AWS-secret-key')
+    AWS_ACCESS_KEY_ID     = credentials('aws-terraform')
+    AWS_SECRET_ACCESS_KEY = credentials('aws-terraform')
     AWS_DEFAULT_REGION    = 'ap-northeast-1'   // MUST match S3 bucket region
   }
 
