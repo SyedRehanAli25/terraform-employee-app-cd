@@ -24,7 +24,7 @@ pipeline {
 
     stage('Plan') {
       steps {
-        terraformPlan(path: 'src/terraform/wrapper', env: 'dev')
+        terraformPlan(path: 'src/terraform/wrapper', env: 'dev', varFile: "env/dev.tfvars")
       }
     }
 
