@@ -12,7 +12,7 @@ pipeline {
   stages {
     stage('Init') {
       steps {
-        terraformInit(path: 'src/terraform/wrapper')
+        terraformInit(path: 'src/terraform/wrapper', backendReconfigure: true)
       }
     }
 
